@@ -1,0 +1,26 @@
+# Core data
+pandas==2.2.2
+numpy==1.26.4
+
+# Database
+psycopg2-binary==2.9.9
+sqlalchemy==2.0.30
+
+# API clients
+praw==7.7.1                  # Reddit
+pytrends==4.9.2              # Google Trends
+requests==2.32.3             # eBay + Rainforest HTTP calls
+
+# Dashboard
+streamlit==1.35.0
+plotly==5.22.0
+
+# Scheduling
+apscheduler==3.10.4
+
+# Config
+python-dotenv==1.0.1
+
+# Testing
+pytest==8.2.2
+pytest-mock==3.14.0
