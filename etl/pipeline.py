@@ -61,8 +61,13 @@ def run_pipeline(skip_amazon: bool = False):
     load.load_retail_vs_ecomm(rve_clean)
 
     # ── NICHE SCORES ──────────────────────────
-    print("\n[ 4/4 ] Computing niche opportunity scores...")
+    print("\n[ 4/5 ] Computing niche opportunity scores...")
     _compute_and_load_niche_scores()
+
+    # ── REFRESH VIEWS ─────────────────────────
+    print("\n[ 5/5 ] Refreshing materialized views...")
+    from db.queries import refresh_views
+    refresh_views()
 
     print(f"\n{'='*50}")
     print(f"Pipeline complete at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
