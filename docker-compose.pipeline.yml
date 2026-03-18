@@ -1,0 +1,13 @@
+services:
+  pipeline:
+    build: .
+    env_file: .env
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./data:/app/data
+      - .:/app
+    command: python etl/pipeline.py
+    profiles:
+      - pipeline

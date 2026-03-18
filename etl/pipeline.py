@@ -17,7 +17,7 @@ def run_pipeline(skip_amazon: bool = False):
         return False
 
     # ── INGEST ────────────────────────────────
-    print("[ 1/4 ] Ingesting data...")
+    print("[ 1/5 ] Ingesting data...")
 
     print("  Fetching eBay category data...")
     ebay_raw = ingest.fetch_ebay_category_data()
@@ -37,7 +37,7 @@ def run_pipeline(skip_amazon: bool = False):
     bls_raw = ingest.fetch_bls_data()
 
     # ── TRANSFORM ─────────────────────────────
-    print("\n[ 2/4 ] Transforming data...")
+    print("\n[ 2/5 ] Transforming data...")
 
     import pandas as pd
 
@@ -52,7 +52,7 @@ def run_pipeline(skip_amazon: bool = False):
     rve_clean     = transform.build_retail_vs_ecomm(spend_clean, all_trends)
 
     # ── LOAD ──────────────────────────────────
-    print("\n[ 3/4 ] Loading into PostgreSQL...")
+    print("\n[ 3/5 ] Loading into PostgreSQL...")
 
     load.load_category_trends(all_trends)
     load.load_search_signals(search_clean)
