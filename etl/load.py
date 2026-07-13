@@ -1,5 +1,4 @@
 import pandas as pd
-from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy import text
 from db.connection import get_engine
 
@@ -13,18 +12,13 @@ def _upsert(df: pd.DataFrame, table: str, conflict_cols: list[str]) -> int:
     records = df.to_dict(orient="records")
     inserted = 0
 
+    columns = records[0].keys()
     with engine.begin() as conn:
-        for record in records:
-            stmt = (
-                insert(__import__("sqlalchemy", fromlist=["Table"])
-                       .__class__)  # placeholder — using raw SQL below
-            )
-
         stmt = text(f"""
-            INSERT INTO {table} ({", ".join(record.keys())})
-            VALUES ({", ".join(f":{k}" for k in record.keys())})
+            INSERT INTO {table} ({", ".join(columns)})
+            VALUES ({", ".join(f":{k}" for k in columns)})
             ON CONFLICT ({", ".join(conflict_cols)}) DO UPDATE SET
-            {", ".join(f"{k} = EXCLUDED.{k}" for k in record.keys() if k not in conflict_cols)}
+            {", ".join(f"{k} = EXCLUDED.{k}" for k in columns if k not in conflict_cols)}
         """)
 
         for record in records:

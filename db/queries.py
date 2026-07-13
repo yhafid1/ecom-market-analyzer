@@ -35,6 +35,18 @@ def get_leaderboard() -> pd.DataFrame:
     """)
 
 
+def get_score_history() -> pd.DataFrame:
+    """Full opportunity_score history per category, used to draw sparklines
+    on the leaderboard — reads the raw niche_scores table directly rather
+    than a materialized view, since the views only expose the latest and
+    previous snapshot, not the full series."""
+    return _query("""
+        SELECT category_name, scored_at, opportunity_score
+        FROM niche_scores
+        ORDER BY category_name, scored_at ASC
+    """)
+
+
 def get_rising_declining() -> pd.DataFrame:
     return _query("""
         SELECT
