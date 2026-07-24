@@ -76,6 +76,3 @@ pytest tests/ -v
 
 33 tests cover transform logic, opportunity-score invariants, SQL-injection-safe query building, and DB health checks. No live database needed to run them.
 
-## Deploying
-
-Not deployed yet. See [DEPLOYMENT.md](DEPLOYMENT.md) for the walkthrough to get this live on a free Neon/Supabase Postgres instance plus Streamlit Community Cloud in about 10-15 minutes. The screenshots above are from a local run against seeded demo data.
