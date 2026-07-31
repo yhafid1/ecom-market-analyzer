@@ -63,9 +63,6 @@ python -m db.seed --reset     # wipe and reseed
 
 See the `Makefile` for other shortcuts (`make test`, `make db-shell`, `make db-reset`).
 
-## Configuration
-
-`db/connection.py` reads `DATABASE_URL` first (for hosted Postgres like Neon or Supabase), falling back to discrete `DB_USER` / `DB_PASSWORD` / `DB_HOST` / `DB_PORT` / `DB_NAME` for local Docker. See `.env.example` for both.
 
 ## Tests
 
